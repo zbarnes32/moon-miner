@@ -1,13 +1,27 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { AppState } from '../AppState.js';
 import { collectOreService } from '../services/CollectOreService.js';
 
 
 const upgrades = computed(() => AppState.upgrades)
 
-function mineOre() {
-    collectOreService.mineOre()
+const counter = ref(0)
+
+function increaseCounter(){
+    counter.value++
+}
+
+const collectedOre = computed(() => {
+    let total = 0
+    upgrades.value.forEach(upgrade => {
+        total += upgrade.quantity * upgrade.multiplier
+    })
+    return total
+})
+
+function mining() {
+    // collectOreService.mining()
 }
 </script>
 
@@ -16,8 +30,8 @@ function mineOre() {
         <div class="row">
             <div class="col-12 d-flex justify-content-between">
                 <div class="stats text-light">
-                    <h1>Stats</h1>
-                    <h3>Total Collected Ore: 0</h3>
+                    <h1 class="text-center">Stats</h1>
+                    <h3>Total Collected Ore: {{ counter }}</h3>
                     <h5>Ore/Click: 0</h5>
                     <h5>Ore/Second: 0</h5>
                 </div>
@@ -39,7 +53,7 @@ function mineOre() {
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <div class="align-items-center">
-                    <button class="btn btn-light">Mine</button>
+                    <button @click="increaseCounter()" class="btn btn-light">Mine</button>
                 </div>
             </div>
         </div>

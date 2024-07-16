@@ -12,32 +12,36 @@ export const AppState = reactive({
     new Upgrade({
       name: 'Pickaxe',
       picture: '⛏',
-      quantity: 1,
-      incrementBy: 1,
+      quantity: 0,
+      manualMultiplier: 1,
+      autoMultiplier: 0,
       price: 10
     }),
     new Upgrade({
       name: 'Drill',
       picture: '⇣',
-      quantity: 1,
-      incrementBy: 5,
+      quantity: 0,
+      manualMultiplier: 5,
+      autoMultiplier: 0,
       price: 50
     }), 
     new Upgrade({
       name: 'Miner',
       picture: '🧑🏼‍🚀',
-      quantity: 1,
-      incrementBy: 10,
-      price: 100
+      quantity: 0,
+      manualMultiplier: 0,
+      autoMultiplier: 25,
+      price: 250
     }),
     new Upgrade({
       name: 'Automatic Drill',
       picture: '🗼',
-      quantity: 1,
-      incrementBy: 100,
+      quantity: 0,
+      manualMultiplier: 0,
+      autoMultiplier: 100, 
       price: 1000
     }),
   ],
 
-  ores: null
+  ores: 0
 })
